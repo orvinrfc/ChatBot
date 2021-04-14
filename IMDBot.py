@@ -177,7 +177,7 @@ while True:
                 w.respondUserWithWikiTranslated(wikipage,targetLang)
             else:
                 w.respondUserWithWiki(wikipage)
-                
+            
             if (wikipage is not None):
                 print('IMDBot: Would you like me to print the page as a text file? (y/n)')
                 respond = input(f'{userName}: ')
@@ -186,6 +186,8 @@ while True:
                 print("IMDBot: What else would you like to know?")
             else:
                 print("IMDBot: What else would you like to know?")
+                
+            
 
 
         else:

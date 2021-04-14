@@ -6,5 +6,5 @@ def translate_text(text,target):
     translated = translator.translate(text,src="en",dest=str(target))
     return translated.text
 
-# print(translate_text("my name is orvin", "de"))
-# print('IMDBot: ' + translate_text("Here\'s the link to the full Wikipedia page: ","ja") + "Test")
+print(translate_text("my name is orvin", "de"))
+print('IMDBot: ' + translate_text("Here\'s the link to the full Wikipedia page: ","ja") + "Test")
