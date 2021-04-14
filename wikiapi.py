@@ -1,4 +1,5 @@
 import wikipediaapi
+import translate as t
 
 # Find a page in wikipedia
 # if the page the user's looking for exists, return the page, otherwise return false.
@@ -31,6 +32,15 @@ def respondUserWithWiki(page):
         print("IMDBot: Wikipedia Page of " + page.title)
         print("IMDBot: " + page.summary)
         print('IMDBot: Here\'s the link to the full Wikipedia page' + page.fullurl)
+
+# response to the user's request of a certain Actor's name
+def respondUserWithWikiTranslated(page,targetLang):
+    if page is None:
+        print('IMDBot: ' + t.translate_text("Sorry, the page you are looking for is not in wikipedia", targetLang))
+    else:
+        print('IMDBot: ' + t.translate_text("Wikipedia Page of :",targetLang)  + page.title)
+        print('IMDBot: ' + t.translate_text(str(page.summary),targetLang))
+        print('IMDBot: ' + t.translate_text("Here\'s the link to the full Wikipedia page: ",targetLang) + page.fullurl)
 
 # write the whole wikipedia page for the user into a text file
 def wikipediaIntoText(page):

@@ -9,7 +9,7 @@ import synonyms as sy
 import postagging as pt
 from chatterbot import ChatBot
 import wikiapi as w
-# import wikipediaapi
+import translate as t
 
 bot = ChatBot('MovieBot')
 wikipedia = w.createWikipedia() # wikipedia object
@@ -157,10 +157,27 @@ while True:
                 print('IMDBot: Sorry, I don\'t know which movie you\'re asking about. Try to ask me to find a movie :)')
         
         elif ((('wikipedia' and 'actor') or ('wikipedia' and 'actress')) in user_input):
+            targetLang = "en"
+
             print('IMDBot: Whose wikipedia page would you like to find out about?')
             actorName =  input(f'{userName}: ')
+            
+            # the user can ask to translate the language in wikipedia part.
+            # if the user chooses to translate, everything in wikipedia part will be converted to target Language
+
+            if ("translate" in actorName):
+                print('IMDBot: Please enter the language code you need me to translate to (i.e: "de", "ja", etc)')
+                targetLang = input(f'{userName}: ')
+                print('IMDBot: ' + t.translate_text("Whose wikipedia page would you like to find out about?", targetLang))
+                actorName =  input(f'{userName}: ')
+
             wikipage = w.findPage(wikipedia, actorName) # get the page of the actor
-            w.respondUserWithWiki(wikipage)
+
+            if targetLang != "en":
+                w.respondUserWithWikiTranslated(wikipage,targetLang)
+            else:
+                w.respondUserWithWiki(wikipage)
+                
             if (wikipage is not None):
                 print('IMDBot: Would you like me to print the page as a text file? (y/n)')
                 respond = input(f'{userName}: ')
