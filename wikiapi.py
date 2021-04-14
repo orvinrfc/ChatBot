@@ -30,6 +30,7 @@ def respondUserWithWiki(page):
     else:
         print("IMDBot: Wikipedia Page of " + page.title)
         print("IMDBot: " + page.summary)
+        print('IMDBot: Here\'s the link to the full Wikipedia page' + page.fullurl)
 
 # write the whole wikipedia page for the user into a text file
 def wikipediaIntoText(page):
@@ -47,12 +48,14 @@ def wikipediaIntoText(page):
         # close the file    
         outFile.close()
 
+def createWikipedia():
+    return wikipediaapi.Wikipedia(language='en', extract_format=wikipediaapi.ExtractFormat.WIKI)   
 
 # -------------- Testing --------------- 
-wikipedia = wikipediaapi.Wikipedia(
-        language='en',
-        extract_format=wikipediaapi.ExtractFormat.WIKI
-)
+# wikipedia = wikipediaapi.Wikipedia(
+#         language='en',
+#         extract_format=wikipediaapi.ExtractFormat.WIKI
+# )
 
 # page = findPage(wikipedia, "Tom Cruise")
 # respondUserWithWiki(page)

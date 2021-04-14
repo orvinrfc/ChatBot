@@ -8,8 +8,11 @@ import spellinghandler as sp
 import synonyms as sy
 import postagging as pt
 from chatterbot import ChatBot
+import wikiapi as w
+# import wikipediaapi
 
 bot = ChatBot('MovieBot')
+wikipedia = w.createWikipedia() # wikipedia object
 print('IMDBot: Hello There! My name is IMDBot. ', end='')
 userName = u.askForName() #set username for the first time
 print(f'IMDBOT: I just want to make sure I have your name right.')
@@ -26,6 +29,7 @@ while True:
         user_input = sp.fixSentence(raw_user_input, entities)
         tagged = pt.getPosSentenceEntity(user_input,entities) # get the Part of speech of the spell checked sentence in the form of arrays containing tuples
         user_input = sy.getArray(user_input, entities) # User input is now an array. To look for keywords: if 'keyword' in user_input
+        
 
         for i in range (len(user_input)):
             user_input[i] = user_input[i].lower()
@@ -151,6 +155,21 @@ while True:
                 movie = f.giveSummary(movie)
             else:
                 print('IMDBot: Sorry, I don\'t know which movie you\'re asking about. Try to ask me to find a movie :)')
+        
+        elif ((('wikipedia' and 'actor') or ('wikipedia' and 'actress')) in user_input):
+            print('IMDBot: Whose wikipedia page would you like to find out about?')
+            actorName =  input(f'{userName}: ')
+            wikipage = w.findPage(wikipedia, actorName) # get the page of the actor
+            w.respondUserWithWiki(wikipage)
+            if (wikipage is not None):
+                print('IMDBot: Would you like me to print the page as a text file? (y/n)')
+                respond = input(f'{userName}: ')
+                if (respond == 'y'):
+                    w.wikipediaIntoText(wikipage)
+                print("IMDBot: What else would you like to know?")
+            else:
+                print("IMDBot: What else would you like to know?")
+
 
         else:
             #print("ELSE")
