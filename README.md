@@ -51,6 +51,10 @@ For this project, we created a responsive and interactive chatbot using Python w
 
 > $ pip install chatterbot-corpus (Optional; See chatterTrainer.py under [Trainers/Utility](#trainers/utility))
 
+> $ pip install wikipediaapi
+
+> $ pip install googletrans==3.1.0a0
+
 We need to also download the corpus necessary for our NLP and program to run. To do this:
 > Make sure to "$ pip install nltk" beforehand
 > Open python shell
@@ -157,9 +161,23 @@ To see the class structure of the IMDb integration, take a look at the [UML Diag
 - It can be run to see what it would look like, but chatbot interaction is nonfunctional
 
 
-## Possible Improvements
+## Individual Project 
 
-- GUI implementation
-- Larger corpora for the trainers
-- Additional API integrations
-- POS Tagging improvements regarding interfunctionality
+IMDBot now has 2 more implementations of features using API and python library wrapper.
+
+1) Wikipedia API
+- User will now be able to not only ask about movie, but also about actor or actress
+- IMDBot will fetch the data from wikipedia
+- IMDBot will provide: 
+  - Wikipedia summary page of prompted actor / actress
+  - The link of the full wikipedia page
+  - (Optional) The full page of wikipedia of prompted actor / actress in a text file
+  
+2) Google Translate API
+- User will be able to translate IMDBot ONLY when asking for a Wikipedia page
+- The translation can be done in various language codes given by Google-translate API (full list: https://cloud.google.com/translate/docs/languages)
+- IMDBot will provide:
+  - Prompt to user in the desired language
+  - Translated wikipedia summary page of prompted actor / actress in the desired language
+  - The link of the full wikipedia page
+  - (Optional) The full page of wikipedia of prompted actor / actress in a text file. However, the content of the text file will still be in the default language (i.e: English)
