@@ -1,8 +1,12 @@
 # **Movie Chat Bot**
 
-COSC 310 Assignment **3** - Group 4
-
-*This repository is a copied and updated version of the original with the change history and files preserved for refactoring*
+This project is created as a part of our assignment in COSC310 in The University of British Columbia.  
+Team Members: 
+- Me (Orvin Tritama)
+- Veronica Jack
+- Francisco Perella-Holfeld
+- Monica Rampaul
+- Karan Gohil
 
 ## Table of Contents
 * [General Information](#general-information)
